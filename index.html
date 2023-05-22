@@ -1,21 +1,55 @@
 <!DOCTYPE html>
-<html> 
-    <head>
-        <link rel ="stylesheet" href="style.css">
-        <title> Charcter Calculator</title>
-        
-    </head>
-    <body>
-        
-        <label for="input">Enter any string:</label>
-<input type="text" id="input" placeholder="Enter any string">
-<button onclick="calculate()">Calculate</button>
-<p id="result"></p>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .counter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="counter">
+      <h3>Character Counter</h3>
+      <textarea
+        id="input-text"
+        rows="4"
+        cols="50"
+        placeholder="Type your text here"
+      ></textarea>
+      <p>Character count: <span id="character-count">0</span></p>
+      <p>Characters left: <span id="characters-left">280</span></p>
+    </div>
+  </body>
+  <script>
+    // Get the necessary DOM elements
+    const inputText = document.getElementById("input-text");
+    // console.log(inputText);
+    const characterCount = document.getElementById("character-count");
+    const charactersLeft = document.getElementById("characters-left");
 
+    // Add an event listener to the input text area
+    inputText.addEventListener("input", updateCharacterCount);
 
+    // Function to update the character count
+    function updateCharacterCount() {
+      const text = inputText.value;
+      const count = text.length;
+      characterCount.textContent = count;
 
+      const maxCharacters = 280;
 
-        
-    </body>
-    git
+      const left = maxCharacters - count;
+
+      if (left < 0) {
+        left = 0; // Prevent negative values
+      }
+      charactersLeft.textContent = left;
+    }
+  </script>
 </html>
